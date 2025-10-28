@@ -1,284 +1,181 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>King David Academy — Student Achievement Platform</title>
-  <style>
-    :root{--accent:#2b6cb0; --muted:#6b7280; --bg:#f7f9fc}
-    *{box-sizing:border-box}
-    body{font-family:Inter,system-ui,Arial,Helvetica,sans-serif; margin:0; background:var(--bg); color:#0f172a}
-    header{background:white; border-bottom:1px solid #e6eef8; padding:18px 24px; display:flex; align-items:center; justify-content:space-between}
-    .brand{display:flex; gap:12px; align-items:center}
-    .logo{width:44px;height:44px;background:var(--accent); color:white; display:flex; align-items:center; justify-content:center; border-radius:8px; font-weight:700}
-    nav a{margin-left:14px; color:var(--muted); text-decoration:none}
-    .container{max-width:1100px;margin:28px auto;padding:0 20px}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evan Nziza | Portfolio</title>
+<style>
+/* Reset & basic */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; scroll-behavior: smooth; }
+body.light { background-color:#f7f7f7; color:#333; }
+body.dark { background-color:#1a1a1a; color:#f0f0f0; }
+a{text-decoration:none; color:inherit;}
 
-    /* Grid */
-    .grid{display:grid; gap:20px}
-    .grid-3{grid-template-columns: 1fr 320px;}
+/* Header & profile */
+header { padding:40px 20px; text-align:center; transition: background 0.3s; }
+header img { width:150px; height:150px; border-radius:50%; object-fit:cover; margin-bottom:20px; transition: transform 0.3s; }
+header img:hover { transform: scale(1.05); }
+header h1 { font-size:2.5em; margin-bottom:10px; }
+header p { font-size:1.2em; color:#666; }
+.social-links { margin-top:15px; display:flex; justify-content:center; gap:15px; }
+.social-links a { font-size:1.5em; transition: color 0.3s; }
+.social-links a:hover { color:#007bff; }
 
-    /* Hero / Search */
-    .hero{background:white;padding:20px;border-radius:10px;display:flex;align-items:center;gap:16px}
-    .search{flex:1;display:flex;gap:10px}
-    .search input, .filter select{padding:10px 12px;border:1px solid #e6eef8;border-radius:8px;width:100%}
-    .btn{background:var(--accent);color:white;padding:10px 14px;border-radius:8px;border:0;cursor:pointer}
+/* Navigation */
+nav { display:flex; justify-content:center; background-color:#eaeaea; padding:10px 0; position:sticky; top:0; z-index:1000; }
+nav a { margin:0 15px; font-weight:bold; transition: color 0.3s; }
+nav a:hover { color:#007bff; }
+body.dark nav { background-color:#333; }
+body.dark nav a { color:#f0f0f0; }
 
-    /* Achievement cards */
-    .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:18px}
-    .card{background:white;border-radius:10px;padding:12px;border:1px solid #e6eef8}
-    .card h4{margin:6px 0 0}
-    .meta{font-size:13px;color:var(--muted)}
+/* Sections & scroll animations */
+section { padding:60px 20px; max-width:1000px; margin:0 auto; opacity:0; transform:translateY(30px); transition: all 0.8s ease; }
+section.visible { opacity:1; transform:translateY(0); }
+section h2 { text-align:center; margin-bottom:40px; font-size:2em; color:#007bff; }
 
-    /* Sidebar */
-    aside .panel{background:white;padding:14px;border-radius:10px;border:1px solid #e6eef8}
-    .profile-thumb{display:flex;gap:12px;align-items:center}
-    .avatar{width:56px;height:56px;border-radius:50%;background:#cfe2ff;display:flex;align-items:center;justify-content:center;font-weight:700}
+/* Skills */
+.skills { display:flex; flex-direction:column; gap:20px; max-width:600px; margin:0 auto; }
+.skill { background:#fff; padding:15px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+.skill-name { margin-bottom:8px; font-weight:bold; }
+.skill-bar { background:#e0e0e0; border-radius:6px; overflow:hidden; }
+.skill-progress { height:15px; width:0; background:#007bff; border-radius:6px; transition: width 1.5s ease; }
+body.dark .skill { background:#2a2a2a; box-shadow:0 2px 6px rgba(255,255,255,0.1); }
+body.dark .skill-progress { background:#00bfff; }
 
-    /* Gallery */
-    .gallery{display:flex;flex-wrap:wrap;gap:8px}
-    .gallery img{width:calc(33.333% - 5px);border-radius:6px}
+/* Projects */
+.projects { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
+.project { background:#fff; padding:20px; border-radius:12px; width:250px; box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:center; cursor:pointer; transition: transform 0.3s, box-shadow 0.3s; }
+.project:hover { transform:translateY(-8px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
+body.dark .project { background:#2a2a2a; box-shadow:0 2px 6px rgba(255,255,255,0.1); }
 
-    /* News list */
-    .news-item{display:flex;gap:12px;padding:8px 0;border-bottom:1px dashed #eef5fb}
-    .news-item:last-child{border-bottom:0}
+/* Modal */
+.modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:2000; }
+.modal-content { background:#fff; padding:20px; border-radius:12px; max-width:600px; width:90%; position:relative; }
+.modal-content h3 { margin-bottom:10px; }
+.modal-content p { margin-bottom:20px; }
+.modal-content .modal-buttons { display:flex; justify-content:center; gap:15px; }
+.modal-content .modal-buttons a { padding:10px 20px; background:#007bff; color:white; border-radius:6px; transition: background 0.3s; }
+.modal-content .modal-buttons a:hover { background:#0056b3; }
+.close-btn { position:absolute; top:10px; right:15px; cursor:pointer; font-size:1.5em; }
+body.dark .modal-content { background:#2a2a2a; color:#f0f0f0; }
 
-    /* Admin form modal */
-    .modal{position:fixed;inset:0;background:rgba(6,8,12,0.45);display:none;align-items:center;justify-content:center;padding:20px}
-    .modal .dialog{background:white;padding:18px;border-radius:12px;max-width:720px;width:100%}
+/* Contact */
+.contact form { display:flex; flex-direction:column; gap:15px; max-width:500px; margin:0 auto; }
+.contact input, .contact textarea { padding:10px; border:1px solid #ccc; border-radius:6px; width:100%; }
+.contact button { padding:12px; background:#007bff; color:white; border:none; border-radius:6px; cursor:pointer; font-size:1em; transition:background 0.3s; }
+.contact button:hover { background:#0056b3; }
 
-    footer{margin:28px 0 60px; text-align:center; color:var(--muted)}
+/* Footer */
+footer { text-align:center; padding:20px; background:#eaeaea; margin-top:40px; }
+body.dark footer { background:#333; color:#f0f0f0; }
 
-    /* Responsive */
-    @media (max-width:900px){.grid-3{grid-template-columns:1fr} .gallery img{width:calc(50% - 4px)}}
-    @media (max-width:520px){header{padding:12px} .hero{flex-direction:column} .search{flex-direction:column}}
-  </style>
+/* Theme Toggle */
+.theme-toggle { position:fixed; top:20px; right:20px; background:#007bff; color:white; border:none; padding:10px 15px; border-radius:50px; cursor:pointer; z-index:1001; transition: background 0.3s; }
+.theme-toggle:hover { background:#0056b3; }
+
+@media(max-width:768px){ .projects{ flex-direction:column; align-items:center; } .modal-content .modal-buttons{ flex-direction:column; gap:10px; } }
+</style>
 </head>
-<body>
-  <header>
-    <div class="brand">
-      <div class="image"><img src="KDA.jpg" alt="KDA"></div>
-      <div>
-        <div style="font-weight:700">King David Academy</div>
-        <div style="font-size:13px;color:var(--muted)">Student Achievement Platform</div>
-      </div>
+<body class="light">
+
+<button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+<header>
+    <img src="profile.jpg" alt="Evan Nziza Profile Photo">
+    <h1>Evan Nziza</h1>
+    <p>I'm just Evan</p>
+    <div class="social-links">
+        <a href="https://github.com/evannziza" target="_blank">🐱</a>
+        <a href="https://linkedin.com/in/evannziza" target="_blank">💼</a>
+        <a href="https://twitter.com/evannziza" target="_blank">🐦</a>
+        <a href="mailto:evannziza34@gmail.com">✉️</a>
     </div>
-    <nav>
-      <a href="#achievements">Achievements</a>
-      <a href="#profiles">Profiles</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#news">News</a>
-      <button class="btn" onclick="openAdmin()">Admin</button>
-    </nav>
-  </header>
+</header>
 
-  <main class="container">
-    <section class="hero">
-      <div style="flex:1">
-        <h2 style="margin:0 0 6px">Celebrate our students' achievements</h2>
-        <div style="color:var(--muted);font-size:14px">Explore academic, sports, arts, and leadership successes from across the school.</div>
-      </div>
+<nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+</nav>
 
-      <div style="width:420px">
-        <div class="search">
-          <input id="q" placeholder="Search by student, class or achievement..." oninput="renderList()" />
-          <select id="category" class="filter" onchange="renderList()">
-            <option value="all">All categories</option>
-            <option value="academic">Academic</option>
-            <option value="sports">Sports</option>
-            <option value="arts">Arts</option>
-            <option value="leadership">Leadership</option>
-          </select>
-          <button class="btn" onclick="resetFilters()">Reset</button>
-        </div>
-      </div>
-    </section>
+<section id="about">
+    <h2>About Me</h2>
+    <p>Hello! I'm Evan Nziza, a passionate web designer and developer. I love creating professional, user-friendly websites and exploring new technologies to deliver high-quality digital experiences.</p>
+</section>
 
-    <div class="grid grid-3" style="margin-top:20px">
-      <div>
-        <section id="achievements">
-          <h3 style="margin:0 0 8px">Recent Achievements</h3>
-          <div id="list" class="cards" aria-live="polite">
-            <!-- Cards injected by JS -->
-          </div>
-        </section>
-
-        <section style="margin-top:18px">
-          <h4 style="margin:0 0 8px">Photo & Video Gallery</h4>
-          <div id="gallery" class="gallery">
-            <!-- gallery thumbnails -->
-          </div>
-        </section>
-
-        <section id="news" style="margin-top:18px">
-          <h4 style="margin:0 0 8px">News & Updates</h4>
-          <div id="newsList">
-            <!-- news items -->
-          </div>
-        </section>
-      </div>
-
-      <aside>
-        <div class="panel">
-          <h4 style="margin:0 0 10px">Featured Student</h4>
-          <div class="profile-thumb">
-            <div class="image"><img src="random_student.jpg" alt="Random Student"></div>
-            <div>
-              <div id="featuredName" style="font-weight:700">Annette Nkurunziza</div>
-              <div class="meta">Class 8 — Student of the Month</div>
-            </div>
-          </div>
-
-          <hr style="margin:12px 0;border:0;border-top:1px solid #eef6ff" />
-
-          <h4 style="margin:0 0 8px">Quick Filters</h4>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-            <button class="btn" onclick="applyQuick('academic')">Academic</button>
-            <button class="btn" onclick="applyQuick('sports')">Sports</button>
-            <button class="btn" onclick="applyQuick('arts')">Arts</button>
-            <button class="btn" onclick="applyQuick('leadership')">Leadership</button>
-          </div>
-
-          <hr style="margin:12px 0;border:0;border-top:1px solid #eef6ff" />
-
-          <h4 style="margin:0 0 8px">Top Students</h4>
-          <ol style="padding-left:18px;color:var(--muted);margin:0">
-            <li>James K. — Math Olympiad</li>
-            <li>Ruth A. — Regional Football</li>
-            <li>Samir P. — Art Exhibit</li>
-          </ol>
-        </div>
-
-        <div style="height:18px"></div>
-        <div class="panel">
-          <h4 style="margin:0 0 8px">Admin Actions</h4>
-          <div style="display:flex;gap:8px">
-            <button class="btn" onclick="openAdmin()">Add Achievement</button>
-            <button class="btn" onclick="exportJSON()">Export JSON</button>
-          </div>
-        </div>
-      </aside>
+<section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+        <div class="skill"><div class="skill-name">HTML & CSS</div><div class="skill-bar"><div class="skill-progress" style="width:90%;"></div></div></div>
+        <div class="skill"><div class="skill-name">JavaScript</div><div class="skill-bar"><div class="skill-progress" style="width:80%;"></div></div></div>
+        <div class="skill"><div class="skill-name">React</div><div class="skill-bar"><div class="skill-progress" style="width:75%;"></div></div></div>
+        <div class="skill"><div class="skill-name">UI/UX Design</div><div class="skill-bar"><div class="skill-progress" style="width:85%;"></div></div></div>
     </div>
+</section>
 
-  </main>
-
-  <footer>
-    © King David Academy — Student Achievement Platform
-  </footer>
-
-  <!-- Admin modal (client-side demo) -->
-  <div id="modal" class="modal" role="dialog" aria-modal="true">
-    <div class="dialog">
-      <h3 style="margin-top:0">Add New Achievement</h3>
-      <form id="adminForm" onsubmit="saveAchievement(event)">
-        <div style="display:grid;gap:8px">
-          <input id="studentName" placeholder="Student full name" required />
-          <input id="class" placeholder="Class (e.g. 8A)" />
-          <select id="cat">
-            <option value="academic">Academic</option>
-            <option value="sports">Sports</option>
-            <option value="arts">Arts</option>
-            <option value="leadership">Leadership</option>
-          </select>
-          <input id="title" placeholder="Achievement title (e.g. 1st place — Math)" required />
-          <input id="date" type="date" />
-          <input id="image" placeholder="Image URL (optional)" />
-          <textarea id="desc" rows="3" placeholder="Short description"></textarea>
-          <div style="display:flex;gap:8px;justify-content:flex-end">
-            <button type="button" onclick="closeAdmin()" style="padding:8px 12px;border-radius:8px">Cancel</button>
-            <button class="btn" type="submit">Save</button>
-          </div>
-        </div>
-      </form>
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+        <div class="project" onclick="openModal('Project One','A modern website built for a local business.','https://example.com/demo1','https://github.com/evannziza/project1')">Project One</div>
+        <div class="project" onclick="openModal('Project Two','An online portfolio showcasing design skills.','https://example.com/demo2','https://github.com/evannziza/project2')">Project Two</div>
+        <div class="project" onclick="openModal('Project Three','A responsive web application with engaging UI.','https://example.com/demo3','https://github.com/evannziza/project3')">Project Three</div>
     </div>
-  </div>
+</section>
 
-  <script>
-    // Sample data (would come from server / CMS in a real build)
-    const data = [
-      {id:1, student:'James K.', class:'9B', category:'academic', title:'1st — Math Olympiad', date:'2025-09-14', desc:'Top scorer in district math olympiad', image:null},
-      {id:2, student:'Ruth A.', class:'10A', category:'sports', title:'Runner-up — Regional Football', date:'2025-08-02', desc:'Key midfielder helping team reach finals', image:null},
-      {id:3, student:'Samir P.', class:'11C', category:'arts', title:'Featured — National Art Expo', date:'2025-07-21', desc:'Painting selected for national exhibition', image:null},
-      {id:4, student:'Annette N.', class:'8A', category:'leadership', title:'Student Council Chair', date:'2025-06-01', desc:'Elected chair for 2025 term', image:null}
-    ];
+<section id="contact">
+    <h2>Contact Me</h2>
+    <div class="contact">
+        <form action="mailto:evannziza34@gmail.com" method="post" enctype="text/plain">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
 
-    const news = [
-      {id:1, title:'Inter-school debate team wins 2nd place', date:'2025-09-29'},
-      {id:2, title:'Annual sports day highlights', date:'2025-07-18'}
-    ];
+<footer>&copy; 2025 Evan Nziza. All Rights Reserved.</footer>
 
-    function formatDate(d){ if(!d) return ''; const dt = new Date(d); return dt.toLocaleDateString(); }
+<!-- Modal -->
+<div class="modal" id="projectModal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h3 id="modalTitle"></h3>
+        <p id="modalDesc"></p>
+        <div class="modal-buttons">
+            <a id="demoBtn" href="#" target="_blank">Live Demo</a>
+            <a id="codeBtn" href="#" target="_blank">View Code</a>
+        </div>
+    </div>
+</div>
 
-    function cardHTML(a){
-      return `\n      <div class="card">\n        ${a.image?`<img src="${a.image}" alt="${a.title}" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:8px">`:''}\n        <div class="meta">${a.category.toUpperCase()} • ${a.class} • ${formatDate(a.date)}</div>\n        <h4>${a.title}</h4>\n        <div style="color:var(--muted);font-size:13px">By ${a.student}</div>\n        <p style="margin-top:8px;color:var(--muted);font-size:14px">${a.desc || ''}</p>\n      </div>`
-    }
+<script>
+// Theme toggle
+function toggleTheme(){ document.body.classList.toggle("dark"); document.body.classList.toggle("light"); }
 
-    function renderList(){
-      const q = (document.getElementById('q').value || '').toLowerCase();
-      const cat = document.getElementById('category').value;
-      const list = document.getElementById('list');
-      list.innerHTML = '';
-      const filtered = data.filter(a=>{
-        if(cat !== 'all' && a.category !== cat) return false;
-        if(q && !(a.student.toLowerCase().includes(q) || a.title.toLowerCase().includes(q) || (a.desc||'').toLowerCase().includes(q))) return false;
-        return true;
-      });
-      if(filtered.length===0){ list.innerHTML = '<div style="padding:18px;background:white;border-radius:10px;border:1px solid #e6eef8;color:var(--muted)">No achievements found.</div>'; return }
-      list.innerHTML = filtered.map(cardHTML).join('\n');
-    }
+// Scroll animations
+const sections=document.querySelectorAll("section");
+const observer=new IntersectionObserver(entries=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add("visible"); } });},{threshold:0.2});
+sections.forEach(section=>observer.observe(section));
 
-    function renderGallery(){
-      const g = document.getElementById('gallery');
-      const imgs = [
-        'https://images.unsplash.com/photo-1596495578063-2f7bf3be7a0a?auto=format&fit=crop&w=800&q=60',
-        'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=60',
-        'https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?auto=format&fit=crop&w=800&q=60'
-      ];
-      g.innerHTML = imgs.map(s=>`<img src="${s}" alt="event" loading="lazy">`).join('\n');
-    }
+// Modal
+const modal=document.getElementById('projectModal');
+const modalTitle=document.getElementById('modalTitle');
+const modalDesc=document.getElementById('modalDesc');
+const demoBtn=document.getElementById('demoBtn');
+const codeBtn=document.getElementById('codeBtn');
 
-    function renderNews(){
-      const n = document.getElementById('newsList');
-      n.innerHTML = news.map(it=>`<div class=\"news-item\"><div style=\"font-weight:700\">${it.title}</div><div style=\"margin-left:auto;color:var(--muted);font-size:13px\">${formatDate(it.date)}</div></div>`).join('');
-    }
+function openModal(title,desc,demo,code){
+    modalTitle.textContent=title;
+    modalDesc.textContent=desc;
+    demoBtn.href=demo;
+    codeBtn.href=code;
+    modal.style.display='flex';
+}
+function closeModal(){ modal.style.display='none'; }
+window.onclick=function(e){ if(e.target==modal){ modal.style.display='none'; } }
+</script>
 
-    function applyQuick(cat){ document.getElementById('category').value = cat; renderList(); }
-    function resetFilters(){ document.getElementById('q').value=''; document.getElementById('category').value='all'; renderList(); }
-
-    // Admin modal functions (demo only)
-    function openAdmin(){ document.getElementById('modal').style.display='flex' }
-    function closeAdmin(){ document.getElementById('modal').style.display='none' }
-
-    function saveAchievement(e){
-      e.preventDefault();
-      const newA = {
-        id: Date.now(),
-        student: document.getElementById('studentName').value,
-        class: document.getElementById('class').value || '-',
-        category: document.getElementById('cat').value,
-        title: document.getElementById('title').value,
-        date: document.getElementById('date').value,
-        desc: document.getElementById('desc').value,
-        image: document.getElementById('image').value || null
-      };
-      data.unshift(newA);
-      closeAdmin();
-      document.getElementById('adminForm').reset();
-      renderList();
-      alert('Achievement saved (demo). In a production site this would be sent to the server.');
-    }
-
-    function exportJSON(){
-      const blob = new Blob([JSON.stringify({achievements:data,news},null,2)],{type:'application/json'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a'); a.href = url; a.download = 'kingdavid-achievements.json'; a.click(); URL.revokeObjectURL(url);
-    }
-
-    // Init
-    renderList(); renderGallery(); renderNews();
-
-    // Close modal on background click
-    document.getElementById('modal').addEventListener('click', (ev)=>{ if(ev.target.id==='modal') closeAdmin() });
-  </script>
 </body>
 </html>
