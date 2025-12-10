@@ -1,181 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Evan Nziza | Portfolio</title>
-<style>
-/* Reset & basic */
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; scroll-behavior: smooth; }
-body.light { background-color:#f7f7f7; color:#333; }
-body.dark { background-color:#1a1a1a; color:#f0f0f0; }
-a{text-decoration:none; color:inherit;}
-
-/* Header & profile */
-header { padding:40px 20px; text-align:center; transition: background 0.3s; }
-header img { width:150px; height:150px; border-radius:50%; object-fit:cover; margin-bottom:20px; transition: transform 0.3s; }
-header img:hover { transform: scale(1.05); }
-header h1 { font-size:2.5em; margin-bottom:10px; }
-header p { font-size:1.2em; color:#666; }
-.social-links { margin-top:15px; display:flex; justify-content:center; gap:15px; }
-.social-links a { font-size:1.5em; transition: color 0.3s; }
-.social-links a:hover { color:#007bff; }
-
-/* Navigation */
-nav { display:flex; justify-content:center; background-color:#eaeaea; padding:10px 0; position:sticky; top:0; z-index:1000; }
-nav a { margin:0 15px; font-weight:bold; transition: color 0.3s; }
-nav a:hover { color:#007bff; }
-body.dark nav { background-color:#333; }
-body.dark nav a { color:#f0f0f0; }
-
-/* Sections & scroll animations */
-section { padding:60px 20px; max-width:1000px; margin:0 auto; opacity:0; transform:translateY(30px); transition: all 0.8s ease; }
-section.visible { opacity:1; transform:translateY(0); }
-section h2 { text-align:center; margin-bottom:40px; font-size:2em; color:#007bff; }
-
-/* Skills */
-.skills { display:flex; flex-direction:column; gap:20px; max-width:600px; margin:0 auto; }
-.skill { background:#fff; padding:15px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-.skill-name { margin-bottom:8px; font-weight:bold; }
-.skill-bar { background:#e0e0e0; border-radius:6px; overflow:hidden; }
-.skill-progress { height:15px; width:0; background:#007bff; border-radius:6px; transition: width 1.5s ease; }
-body.dark .skill { background:#2a2a2a; box-shadow:0 2px 6px rgba(255,255,255,0.1); }
-body.dark .skill-progress { background:#00bfff; }
-
-/* Projects */
-.projects { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
-.project { background:#fff; padding:20px; border-radius:12px; width:250px; box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:center; cursor:pointer; transition: transform 0.3s, box-shadow 0.3s; }
-.project:hover { transform:translateY(-8px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
-body.dark .project { background:#2a2a2a; box-shadow:0 2px 6px rgba(255,255,255,0.1); }
-
-/* Modal */
-.modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:2000; }
-.modal-content { background:#fff; padding:20px; border-radius:12px; max-width:600px; width:90%; position:relative; }
-.modal-content h3 { margin-bottom:10px; }
-.modal-content p { margin-bottom:20px; }
-.modal-content .modal-buttons { display:flex; justify-content:center; gap:15px; }
-.modal-content .modal-buttons a { padding:10px 20px; background:#007bff; color:white; border-radius:6px; transition: background 0.3s; }
-.modal-content .modal-buttons a:hover { background:#0056b3; }
-.close-btn { position:absolute; top:10px; right:15px; cursor:pointer; font-size:1.5em; }
-body.dark .modal-content { background:#2a2a2a; color:#f0f0f0; }
-
-/* Contact */
-.contact form { display:flex; flex-direction:column; gap:15px; max-width:500px; margin:0 auto; }
-.contact input, .contact textarea { padding:10px; border:1px solid #ccc; border-radius:6px; width:100%; }
-.contact button { padding:12px; background:#007bff; color:white; border:none; border-radius:6px; cursor:pointer; font-size:1em; transition:background 0.3s; }
-.contact button:hover { background:#0056b3; }
-
-/* Footer */
-footer { text-align:center; padding:20px; background:#eaeaea; margin-top:40px; }
-body.dark footer { background:#333; color:#f0f0f0; }
-
-/* Theme Toggle */
-.theme-toggle { position:fixed; top:20px; right:20px; background:#007bff; color:white; border:none; padding:10px 15px; border-radius:50px; cursor:pointer; z-index:1001; transition: background 0.3s; }
-.theme-toggle:hover { background:#0056b3; }
-
-@media(max-width:768px){ .projects{ flex-direction:column; align-items:center; } .modal-content .modal-buttons{ flex-direction:column; gap:10px; } }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EvoTech</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo.png">
 </head>
-<body class="light">
+<body>
+     <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">EvoTech</a>
+            <nav id="mainNav" class="nav">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="products.html">Our Products</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
+            <button id="navToggle" class="nav-toggle" aria-label="Open menu">☰</button>
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle.theme">Change Theme</button>
+            <main>
+                <section class="hero">
+                    <div class="container hero-inner">
+                        <div class="hero-text">
+                            <h1>Welcome to EvoTech</h1>
+                            <p>Quality devices, reliable repairs, and practical tech lessons.</p>
+                            <a href="products.html" class="btn">Shop Now</a>
+                        </div>
+                        <div class="hero-image">
+                            <img src="logo.png" alt="EvoTech logo image">
+                        </div>
+                    </div>
+                </section>
+                <section class="features container">
+                    <h2>Featured</h2>
+                    <div id="productCarousel" class="carousel">
 
-<button class="theme-toggle" onclick="toggleTheme()">🌙</button>
-
-<header>
-    <img src="profile.jpg" alt="Evan Nziza Profile Photo">
-    <h1>Evan Nziza</h1>
-    <p>I'm just Evan</p>
-    <div class="social-links">
-        <a href="https://github.com/evannziza" target="_blank">🐱</a>
-        <a href="https://linkedin.com/in/evannziza" target="_blank">💼</a>
-        <a href="https://twitter.com/evannziza" target="_blank">🐦</a>
-        <a href="mailto:evannziza34@gmail.com">✉️</a>
-    </div>
-</header>
-
-<nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-</nav>
-
-<section id="about">
-    <h2>About Me</h2>
-    <p>Hello! I'm Evan Nziza, a passionate web designer and developer. I love creating professional, user-friendly websites and exploring new technologies to deliver high-quality digital experiences.</p>
-</section>
-
-<section id="skills">
-    <h2>Skills</h2>
-    <div class="skills">
-        <div class="skill"><div class="skill-name">HTML & CSS</div><div class="skill-bar"><div class="skill-progress" style="width:90%;"></div></div></div>
-        <div class="skill"><div class="skill-name">JavaScript</div><div class="skill-bar"><div class="skill-progress" style="width:80%;"></div></div></div>
-        <div class="skill"><div class="skill-name">React</div><div class="skill-bar"><div class="skill-progress" style="width:75%;"></div></div></div>
-        <div class="skill"><div class="skill-name">UI/UX Design</div><div class="skill-bar"><div class="skill-progress" style="width:85%;"></div></div></div>
-    </div>
-</section>
-
-<section id="projects">
-    <h2>Projects</h2>
-    <div class="projects">
-        <div class="project" onclick="openModal('Project One','A modern website built for a local business.','https://example.com/demo1','https://github.com/evannziza/project1')">Project One</div>
-        <div class="project" onclick="openModal('Project Two','An online portfolio showcasing design skills.','https://example.com/demo2','https://github.com/evannziza/project2')">Project Two</div>
-        <div class="project" onclick="openModal('Project Three','A responsive web application with engaging UI.','https://example.com/demo3','https://github.com/evannziza/project3')">Project Three</div>
-    </div>
-</section>
-
-<section id="contact">
-    <h2>Contact Me</h2>
-    <div class="contact">
-        <form action="mailto:evannziza34@gmail.com" method="post" enctype="text/plain">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </div>
-</section>
-
-<footer>&copy; 2025 Evan Nziza. All Rights Reserved.</footer>
-
-<!-- Modal -->
-<div class="modal" id="projectModal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <h3 id="modalTitle"></h3>
-        <p id="modalDesc"></p>
-        <div class="modal-buttons">
-            <a id="demoBtn" href="#" target="_blank">Live Demo</a>
-            <a id="codeBtn" href="#" target="_blank">View Code</a>
+                    </div>
+                </section>
+                <section class="contact-preview container">
+                    <h3>Contact Us</h3>
+                    <p>Open from Monday to Saturday</p>
+                    <a href="contact.html" class="btn-outline">Get in touch with us for more info</a>
+                </section>
+            </main>
+            <footer class="site-footer">
+                <div class="container">
+                    <p>&copy; <span id="year"></span> EvoTech - All rights reserved.</p>
+                </div>
+            </footer>
+            <script src="script.js"></script>
+            <script src="carousel.js"></script>
+            <script src="form-validation.js"></script>
         </div>
-    </div>
-</div>
-
-<script>
-// Theme toggle
-function toggleTheme(){ document.body.classList.toggle("dark"); document.body.classList.toggle("light"); }
-
-// Scroll animations
-const sections=document.querySelectorAll("section");
-const observer=new IntersectionObserver(entries=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add("visible"); } });},{threshold:0.2});
-sections.forEach(section=>observer.observe(section));
-
-// Modal
-const modal=document.getElementById('projectModal');
-const modalTitle=document.getElementById('modalTitle');
-const modalDesc=document.getElementById('modalDesc');
-const demoBtn=document.getElementById('demoBtn');
-const codeBtn=document.getElementById('codeBtn');
-
-function openModal(title,desc,demo,code){
-    modalTitle.textContent=title;
-    modalDesc.textContent=desc;
-    demoBtn.href=demo;
-    codeBtn.href=code;
-    modal.style.display='flex';
-}
-function closeModal(){ modal.style.display='none'; }
-window.onclick=function(e){ if(e.target==modal){ modal.style.display='none'; } }
-</script>
-
+     </header>
 </body>
 </html>
