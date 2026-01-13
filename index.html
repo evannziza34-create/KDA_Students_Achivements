@@ -1,58 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EvoTech</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="logo.png">
-</head>
-<body>
-     <header class="site-header">
-        <div class="container header-inner">
-            <a href="index.html" class="logo">EvoTech</a>
-            <nav id="mainNav" class="nav">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="products.html">Our Products</a>
-                <a href="contact.html">Contact Us</a>
-            </nav>
-            <button id="navToggle" class="nav-toggle" aria-label="Open menu">☰</button>
-            <button id="themeToggle" class="theme-toggle" aria-label="Toggle.theme">Change Theme</button>
-            <main>
-                <section class="hero">
-                    <div class="container hero-inner">
-                        <div class="hero-text">
-                            <h1>Welcome to EvoTech</h1>
-                            <p>Quality devices, reliable repairs, and practical tech lessons.</p>
-                            <a href="products.html" class="btn">Shop Now</a>
-                        </div>
-                        <div class="hero-image">
-                            <img src="logo.png" alt="EvoTech logo image">
-                        </div>
-                    </div>
-                </section>
-                <section class="features container">
-                    <h2>Featured</h2>
-                    <div id="productCarousel" class="carousel">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EvoTech Smart Tech Store</title>
 
-                    </div>
-                </section>
-                <section class="contact-preview container">
-                    <h3>Contact Us</h3>
-                    <p>Open from Monday to Saturday</p>
-                    <a href="contact.html" class="btn-outline">Get in touch with us for more info</a>
-                </section>
-            </main>
-            <footer class="site-footer">
-                <div class="container">
-                    <p>&copy; <span id="year"></span> EvoTech - All rights reserved.</p>
-                </div>
-            </footer>
-            <script src="script.js"></script>
-            <script src="carousel.js"></script>
-            <script src="form-validation.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="logo.png" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">EvoTech</a>
+
+      <nav id="mainNav" class="nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">🌙</button>
+        <button id="navToggle" class="icon-btn nav-toggle" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1>Smart Tech for Everyday Life</h1>
+          <p>
+            Quality devices, expert repairs, and practical tech solutions you can trust.
+          </p>
+          <a href="products.html" class="btn">Shop Products</a>
         </div>
-     </header>
+
+        <div class="hero-image">
+          <img src="https://via.placeholder.com/420x320" alt="Tech products">
+        </div>
+      </div>
+    </section>
+
+    <section class="features container">
+      <h2>Featured Products</h2>
+
+      <div class="carousel-wrapper">
+        <button class="carousel-btn left" id="prevBtn">‹</button>
+
+        <div id="productCarousel" class="carousel">
+          <div class="product-card">
+            <h4>Wireless Earbuds</h4>
+            <p>Clear sound & long battery</p>
+            <span>$39</span>
+          </div>
+
+          <div class="product-card">
+            <h4>Smart Watch</h4>
+            <p>Track health & fitness</p>
+            <span>$59</span>
+          </div>
+
+          <div class="product-card">
+            <h4>Phone Repair</h4>
+            <p>Fast & reliable service</p>
+            <span>From $15</span>
+          </div>
+
+          <div class="product-card">
+            <h4>Bluetooth Speaker</h4>
+            <p>Loud & portable</p>
+            <span>$29</span>
+          </div>
+        </div>
+
+        <button class="carousel-btn right" id="nextBtn">›</button>
+      </div>
+    </section>
+
+    <section class="contact-preview">
+      <div class="container">
+        <h3>Need Help or Repairs?</h3>
+        <p>Open Monday – Saturday | Fast response guaranteed</p>
+        <a href="contact.html" class="btn-outline">Contact Us</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> EvoTech. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
